@@ -19,7 +19,7 @@ public class Boy extends Actor
     {
         fall();
         jump();
-		events();
+        events();
     }
     public void events(){
     	if(Greenfoot.isKeyDown("right"))
@@ -75,9 +75,11 @@ public class Boy extends Actor
             this.setLocation(getX(), (int)y);
             Greenfoot.delay(1);
             if (y >= getWorld().getHeight()) {
-                icyWorld w = (icyWorld)this.getWorld();
-                w.loose(this);
-                break;
+                try {
+                    icyWorld w = (icyWorld)this.getWorld();
+                    w.loose(this);
+                    break;
+                } catch (Exception e) {}
             }
         }
     }
