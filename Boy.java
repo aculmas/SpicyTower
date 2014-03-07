@@ -14,10 +14,11 @@ public class Boy extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private double gravity = 0.981; 
+    private int val = 2;
     public void act() 
     {
         fall();
-        //jump();
+        jump();
 		events();
     }
     public void events(){
@@ -37,9 +38,9 @@ public class Boy extends Actor
         Platform wand = (Platform)this.getOneObjectAtOffset(pos, 0, Platform.class);
         if (wand == null) {
             if (back) {
-                this.setLocation(getX()+1, getY());
+                this.setLocation(getX()+val, getY());
             } else {
-                this.setLocation(getX()-1, getY());
+                this.setLocation(getX()-val, getY());
             }
             
         }
@@ -62,17 +63,22 @@ public class Boy extends Actor
             }
         }
     }
-    /*public void jump()
+    public void jump()
     {
         int fall = 1;
-        int power = 10;
-        while(fall < 200)
+        double y = getY();
+        while(fall<20)
         {
-        	events();
-        	int multi = Math.round((float)(-1*(fall*fall)));
-            this.setLocation(getX(), getY()-multi);
-            Greenfoot.delay(1);
+            events();
             fall++;
+            y = y-(100/(1*fall*gravity));
+            this.setLocation(getX(), (int)y);
+            Greenfoot.delay(1);
+            if (y >= getWorld().getHeight()) {
+                icyWorld w = (icyWorld)this.getWorld();
+                w.loose(this);
+                break;
+            }
         }
-    }*/
+    }
 }
