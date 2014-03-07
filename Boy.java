@@ -14,7 +14,7 @@ public class Boy extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private double gravity = 0.981; 
-    private int val = 2;
+    private int val = 4;
     public void act() 
     {
         fall();
@@ -71,7 +71,7 @@ public class Boy extends Actor
         {
             events();
             fall++;
-            y = y-(100/(1*fall*gravity));
+            y = y-(70/(1*fall*gravity));
             this.setLocation(getX(), (int)y);
             Greenfoot.delay(1);
             if (y >= getWorld().getHeight()) {
