@@ -21,6 +21,7 @@ public class icyWorld extends World
     protected boolean scroll;
     protected int rowSpacing = 100;
     protected int firstSpacing = 50;
+    protected int highest;
     private boolean first;
     protected List<Actor> aList = new ArrayList<Actor>();
 
@@ -44,12 +45,25 @@ public class icyWorld extends World
                     Platform p = new Platform();
                     addObject(p, xPlace, place);
                     aList.add(p);
+                    highest = place;
                 }
                 xPlace += 50;
             }
             currentSpacing = rowSpacing;
             place = place - (rowSpacing + 50);
         }
+    }
+    protected void makeRow() {
+            Row r = new Row();
+            int xPlace = 0;
+            for ( boolean b : r.objects ) {
+                if (b) {
+                    Platform p = new Platform();
+                    addObject(p, xPlace, highest);
+                    aList.add(p);
+                }
+                xPlace += 50;
+            }
     }
     public void loose(Actor a) {
         if (score > 500) {
@@ -77,21 +91,29 @@ public class icyWorld extends World
         return scroll;
     }
     public void act() {
-        if (first = true) {
-            scroll();
-            first = false;
-        }
+        boolean removedOne = false;
         if (scroll = true && didScroll < dest) {
+
+            List<Actor> removedList = new ArrayList<Actor>();
             for ( Actor a : aList ) {
                 a.setLocation(a.getX(), a.getY()+velocity);
+                if (a.getY() == 599) {
+                    removeObject(a);
+                    removedList.add(a);
+                    removedOne = true;
+                }
             }
+            aList.removeAll(removedList);
         } else {
             scroll = false;
+        }
+        if (removedOne) {
+            makeRow();
         }
     }
     public void scroll() {
         scroll = true;
         didScroll = 0;
-        dest = rowSpacing + 50;
+        dest = 50;
     }
 }
