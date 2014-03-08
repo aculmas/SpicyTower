@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Fri Mar 07 21:45:41 CET 2014
+#Sat Mar 08 09:03:37 CET 2014
 target4.type=ClassTarget
 dependency3.from=Boy
 target6.editor.width=900
@@ -23,7 +23,7 @@ target3.editor.x=40
 target5.name=Boy
 target5.editor.width=1280
 target5.editor.y=22
-target5.editor.x=-1
+target5.editor.x=0
 version=2.5.0
 target2.naviview.expanded=true
 class.icyWorld.superclass=greenfoot.World
@@ -101,7 +101,7 @@ dependency2.type=UsesDependency
 class.Boy.image=boy1.png
 world.lastInstantiated=icyWorld
 class.Row.superclass=
-mainWindow.height=943
+mainWindow.height=942
 target2.showInterface=false
 target3.name=Ui
 target6.showInterface=false
