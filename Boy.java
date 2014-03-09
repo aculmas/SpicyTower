@@ -22,7 +22,7 @@ public class Boy extends Actor
     protected int worldVel;
     protected double y;
     protected int startY;
-    protected icyWorld world;
+    protected SpicyWorld world;
 
     public Boy(){
         init(false);
@@ -34,7 +34,7 @@ public class Boy extends Actor
             startY = (int)y;
         }
         if (firstMove == true) {
-            world = (icyWorld)this.getWorld();
+            world = (SpicyWorld)this.getWorld();
             worldVel = world.getVelocity();
             y = getY();
         }
@@ -45,8 +45,7 @@ public class Boy extends Actor
                 this.setLocation(getX(), (int)y);
                 try {
                     if (y >= getWorld().getHeight()) {
-                        icyWorld w = (icyWorld)this.getWorld();
-                        w.loose(this);
+                        world.loose(this);
                     }
                 } catch (Exception e) {}
             } else {
@@ -67,8 +66,7 @@ public class Boy extends Actor
                 this.setLocation(getX(), (int)y);
                 if (y >= getWorld().getHeight()) {
                     try {
-                        icyWorld w = (icyWorld)this.getWorld();
-                        w.loose(this);
+                        world.loose(this);
                     } catch (Exception e) {}
                 }
             } else {
