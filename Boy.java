@@ -77,7 +77,7 @@ public class Boy extends Actor
         }
         events();
     }
-    public void events(){
+    protected void events(){
         if(Greenfoot.isKeyDown("right"))
         {
             run(true);
@@ -97,7 +97,7 @@ public class Boy extends Actor
             fall = 0;
         }
     }
-    public void run(boolean back)
+    protected void run(boolean back)
     {
         int pos;
         if (back == true) {pos =  1;} else {pos = -1;}

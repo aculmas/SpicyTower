@@ -24,7 +24,7 @@ public class icyWorld extends World
     protected int firstSpacing = 50;
     protected int highest;
     protected int crow = 0;
-    private boolean first;
+    protected boolean first;
     protected List<Actor> aList = new ArrayList<Actor>();
 
     public icyWorld()
@@ -77,28 +77,28 @@ public class icyWorld extends World
     public void loose(Actor a) {
         int h = (int)getHeight() / 2;
         if (score > 1000) {
-            addObject(new goodThing(), 50, h);
-            addObject(new goodThing(), 200, h);
-            addObject(new goodThing(), 350, h);
-            addObject(new goodThing(), 500, h);
-            addObject(new goodThing(), 650, h);
+            addObject(new GoodThing(), 50, h);
+            addObject(new GoodThing(), 200, h);
+            addObject(new GoodThing(), 350, h);
+            addObject(new GoodThing(), 500, h);
+            addObject(new GoodThing(), 650, h);
         } 
         else if (score > 750) {
-            addObject(new goodThing(), 50, h);
-            addObject(new goodThing(), 200, h);
-            addObject(new goodThing(), 350, h);
-            addObject(new goodThing(), 500, h);
+            addObject(new GoodThing(), 50, h);
+            addObject(new GoodThing(), 200, h);
+            addObject(new GoodThing(), 350, h);
+            addObject(new GoodThing(), 500, h);
         } 
         else if (score > 500) {
-            addObject(new goodThing(), 50, h);
-            addObject(new goodThing(), 200, h);
-            addObject(new goodThing(), 350, h);
+            addObject(new GoodThing(), 50, h);
+            addObject(new GoodThing(), 200, h);
+            addObject(new GoodThing(), 350, h);
         }
         else if (score > 250) {
-            addObject(new goodThing(), 50, h);
-            addObject(new goodThing(), 200, h);
+            addObject(new GoodThing(), 50, h);
+            addObject(new GoodThing(), 200, h);
         } else {
-            addObject(new goodThing(), 50, h);
+            addObject(new GoodThing(), 50, h);
         }
         try {
         removeObject(a);
@@ -110,7 +110,7 @@ public class icyWorld extends World
     public boolean willScroll () {
         return scroll;
     }
-    public double getDiff(int x) {
+    protected double getDiff(int x) {
         return Math.abs(Math.sin(0.7*Math.sqrt(x))*70-20);
     }
     public void act() {
