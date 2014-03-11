@@ -21,6 +21,7 @@ public class Boy extends Actor
     protected boolean veryFirst = true;
     protected int worldVel;
     protected double y;
+    protected int doubleEligible = 0;
     protected int startY;
     protected SpicyWorld world;
 
@@ -32,6 +33,12 @@ public class Boy extends Actor
         if (veryFirst == true) {
             y = getY();
             startY = (int)y;
+        }
+        if (Greenfoot.isKeyDown("space")) {
+            if (doubleEligible > 7) {
+                init(true);
+                doubleEligible = 0;
+            }
         }
         if (firstMove == true) {
             world = (SpicyWorld)this.getWorld();
@@ -56,6 +63,7 @@ public class Boy extends Actor
                 if (startY > (y + 30)) {
                     world.scroll();
                     world.score += 30;
+                    doubleEligible++;
                 }
                 init(true);
             }
