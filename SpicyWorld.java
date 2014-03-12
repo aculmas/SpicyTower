@@ -76,25 +76,25 @@ public class SpicyWorld extends World
     }
     public void loose(Actor a) {
         int h = (int)getHeight() / 2;
-        if (score > 1000) {
+        if (score > 2000) {
             addObject(new GoodThing(), 50, h);
             addObject(new GoodThing(), 200, h);
             addObject(new GoodThing(), 350, h);
             addObject(new GoodThing(), 500, h);
             addObject(new GoodThing(), 650, h);
         } 
-        else if (score > 750) {
+        else if (score > 1750) {
             addObject(new GoodThing(), 50, h);
             addObject(new GoodThing(), 200, h);
             addObject(new GoodThing(), 350, h);
             addObject(new GoodThing(), 500, h);
         } 
-        else if (score > 500) {
+        else if (score > 1200) {
             addObject(new GoodThing(), 50, h);
             addObject(new GoodThing(), 200, h);
             addObject(new GoodThing(), 350, h);
         }
-        else if (score > 250) {
+        else if (score > 700) {
             addObject(new GoodThing(), 50, h);
             addObject(new GoodThing(), 200, h);
         } else {
