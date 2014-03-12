@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue Mar 11 20:33:04 CET 2014
+#Wed Mar 12 19:46:05 CET 2014
 target4.type=ClassTarget
 dependency3.from=icyWorld
 target6.editor.width=900
@@ -15,12 +15,14 @@ target1.height=50
 target5.type=ClassTarget
 dependency4.from=icyWorld
 mainWindow.width=1280
+class.Indicator.superclass=Ui
 class.SpicyWorld.image=bricks3.jpg
 dependency4.type=UsesDependency
 class.Boy.superclass=greenfoot.Actor
 target2.width=80
 target3.editor.y=22
 target3.editor.x=40
+class.Indicator.image=red-draught.png
 target5.name=Boy
 target5.editor.width=1280
 target5.editor.y=22
@@ -94,6 +96,7 @@ target6.editor.x=40
 target4.naviview.expanded=false
 package.numDependencies=6
 simulation.speed=44
+class.StorySupervisor.superclass=greenfoot.Actor
 target3.editor.height=700
 target3.type=AbstractTarget
 target4.width=80
