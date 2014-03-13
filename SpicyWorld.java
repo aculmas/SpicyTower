@@ -17,7 +17,10 @@ public class SpicyWorld extends World
      */
     public int score;
     public int dest;
+    public Notification notification;
+    public boolean pause;
     protected int didScroll;
+    protected StorySupervisor supervisor;
     protected int velocity = 2;
     protected boolean scroll;
     protected int rowSpacing = 100;
@@ -33,6 +36,7 @@ public class SpicyWorld extends World
         super(800, 600, 1);
         score = 0;
         first = true;
+        setPaintOrder(GoodThing.class, Letter.class, Overlay.class, Notification.class, Boy.class, Platform.class, Grafitto.class);
         // Populate world
         int currentSpacing = firstSpacing;
         int place = 600;
@@ -47,7 +51,7 @@ public class SpicyWorld extends World
                 r  = new Row(getDiff(crow));
             }
             crow++;
-            int xPlace = 0;
+            int xPlace = 25;
             for ( boolean b : r.objects ) {
                 if (b) {
                     Platform p = new Platform();
@@ -60,19 +64,23 @@ public class SpicyWorld extends World
             currentSpacing = rowSpacing;
             place = place - (rowSpacing + 50);
         }
+        notification = new Notification();
+        addObject(notification, 755, 550);
+        supervisor = new StorySupervisor();
+        addObject(supervisor, 0, 0);
     }
     protected void makeRow() {
-            crow++;
-            Row r = new Row(getDiff(crow));
-            int xPlace = 0;
-            for ( boolean b : r.objects ) {
-                if (b) {
-                    Platform p = new Platform();
-                    addObject(p, xPlace, 0);
-                    aList.add(p);
-                }
-                xPlace += 50;
+        crow++;
+        Row r = new Row(getDiff(crow));
+        int xPlace = 25;
+        for ( boolean b : r.objects ) {
+            if (b) {
+                Platform p = new Platform();
+                addObject(p, xPlace, 0);
+                aList.add(p);
             }
+            xPlace += 50;
+        }
     }
     public void loose(Actor a) {
         int h = (int)getHeight() / 2;
@@ -101,7 +109,7 @@ public class SpicyWorld extends World
             addObject(new GoodThing(), 50, h);
         }
         try {
-        removeObject(a);
+            removeObject(a);
         } catch (Exception e) {}
     }
     public int getVelocity () {
@@ -114,24 +122,26 @@ public class SpicyWorld extends World
         return Math.abs(Math.sin(0.7*Math.sqrt(x))*70-20);
     }
     public void act() {
-        boolean removedOne = false;
-        if (scroll = true && didScroll < dest) {
+        if (!pause) {
+            boolean removedOne = false;
+            if (scroll = true && didScroll < dest) {
 
-            List<Actor> removedList = new ArrayList<Actor>();
-            for ( Actor a : aList ) {
-                a.setLocation(a.getX(), a.getY()+velocity);
-                if (a.getY() == 599) {
-                    removeObject(a);
-                    removedList.add(a);
-                    removedOne = true;
+                List<Actor> removedList = new ArrayList<Actor>();
+                for ( Actor a : aList ) {
+                    a.setLocation(a.getX(), a.getY()+velocity);
+                    if (a.getY() == 599) {
+                        removeObject(a);
+                        removedList.add(a);
+                        removedOne = true;
+                    }
                 }
+                aList.removeAll(removedList);
+            } else {
+                scroll = false;
             }
-            aList.removeAll(removedList);
-        } else {
-            scroll = false;
-        }
-        if (removedOne) {
-            makeRow();
+            if (removedOne) {
+                makeRow();
+            }
         }
     }
     public void scroll() {
