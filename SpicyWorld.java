@@ -18,6 +18,7 @@ public class SpicyWorld extends World
     public int score;
     public int dest;
     public Notification notification;
+    public Notification doubleIndicator;
     public boolean pause;
     protected int didScroll;
     protected StorySupervisor supervisor;
@@ -66,6 +67,8 @@ public class SpicyWorld extends World
         }
         notification = new Notification();
         addObject(notification, 755, 550);
+        doubleIndicator = new Notification("images/blue-draught.png", "images/red-draught.png");
+        addObject(doubleIndicator, 700, 560);
         supervisor = new StorySupervisor();
         addObject(supervisor, 0, 0);
     }

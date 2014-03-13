@@ -14,6 +14,12 @@ public class Notification extends Ui
      */
     private GreenfootImage unr = new GreenfootImage("images/notification.png");
     private GreenfootImage rea = new GreenfootImage("images/noNotification.png");
+    public Notification() {}
+    public Notification(String _unr, String _rea) {
+        unr = new GreenfootImage(_unr);
+        rea = new GreenfootImage(_rea);
+        setImage(rea);
+    }
     public void setStatus(boolean _new)
     {
     	if (_new) {

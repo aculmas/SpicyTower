@@ -35,10 +35,12 @@ public class Boy extends Actor
                 y = getY();
                 startY = (int)y;
             }
-            if (Greenfoot.isKeyDown("space")) {
-                if (doubleEligible > 7) {
+            if (doubleEligible > 7) {
+                world.doubleIndicator.setStatus(true);
+                if (Greenfoot.isKeyDown("space")) {
                     init(true);
                     doubleEligible = 0;
+                    world.doubleIndicator.setStatus(false);
                 }
             }
             if (firstMove == true) {
