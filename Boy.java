@@ -30,58 +30,62 @@ public class Boy extends Actor
     }
     public void act() 
     {
-        if (veryFirst == true) {
-            y = getY();
-            startY = (int)y;
-        }
-        if (Greenfoot.isKeyDown("space")) {
+        if (!world.pause) {
+            if (veryFirst == true) {
+                y = getY();
+                startY = (int)y;
+            }
             if (doubleEligible > 7) {
-                init(true);
-                doubleEligible = 0;
-            }
-        }
-        if (firstMove == true) {
-            world = (SpicyWorld)this.getWorld();
-            worldVel = world.getVelocity();
-            y = getY();
-        }
-        if (jump == false) {
-            if (y+1!=this.getWorld().getHeight() + 10 && this.getOneIntersectingObject(Platform.class)== null) {
-                fall++;
-                y = y+(1*fall*gravity);
-                this.setLocation(getX(), (int)y);
-                try {
-                    if (y >= getWorld().getHeight()) {
-                        world.loose(this);
-                    }
-                } catch (Exception e) {}
-            } else {
-                if (veryFirst == true) {
-                    startY = (int)y;
-                    veryFirst = false;
+                world.doubleIndicator.setStatus(true);
+                if (Greenfoot.isKeyDown("space")) {
+                    init(true);
+                    doubleEligible = 0;
+                    world.doubleIndicator.setStatus(false);
                 }
-                if (startY > (y + 30)) {
-                    world.scroll();
-                    world.score += 30;
-                    doubleEligible++;
-                }
-                init(true);
             }
-        } else {
-            if (fall<20) {
-                fall++;
-                y = y-(70/(1*fall*gravity));
-                this.setLocation(getX(), (int)y);
-                if (y >= getWorld().getHeight()) {
+            if (firstMove == true) {
+                world = (SpicyWorld)this.getWorld();
+                worldVel = world.getVelocity();
+                y = getY();
+            }
+            if (jump == false) {
+                if (y+1!=this.getWorld().getHeight() + 10 && this.getOneIntersectingObject(Platform.class)== null) {
+                    fall++;
+                    y = y+(1*fall*gravity);
+                    this.setLocation(getX(), (int)y);
                     try {
-                        world.loose(this);
+                        if (y >= getWorld().getHeight()) {
+                            world.loose(this);
+                        }
                     } catch (Exception e) {}
+                } else {
+                    if (veryFirst == true) {
+                        startY = (int)y;
+                        veryFirst = false;
+                    }
+                    if (startY > (y + 30)) {
+                        world.scroll();
+                        world.score += 30;
+                        doubleEligible++;
+                    }
+                    init(true);
                 }
             } else {
-                init(false);
+                if (fall<20) {
+                    fall++;
+                    y = y-(70/(1*fall*gravity));
+                    this.setLocation(getX(), (int)y);
+                    if (y >= getWorld().getHeight()) {
+                        try {
+                            world.loose(this);
+                        } catch (Exception e) {}
+                    }
+                } else {
+                    init(false);
+                }
             }
+            events();
         }
-        events();
     }
     protected void events(){
         if(Greenfoot.isKeyDown("right"))
@@ -116,5 +120,9 @@ public class Boy extends Actor
             }
 
         }
-    }    
+    }
+    protected void addedToWorld (World _w) {
+        super.addedToWorld(_w);
+        world = (SpicyWorld)_w;
+    }     
 }
