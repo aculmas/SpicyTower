@@ -41,19 +41,19 @@ public class StorySupervisor extends Actor
     		step++;
     	} else if (w.score > 800 && w.score < 1100 && step == 3 && Greenfoot.isKeyDown("m")) {
     		w.addObject(mail, 0, 0);
-    	} else if (w.score > 1400 && step == 3) {
+    	} else if (w.score > 1250 && step == 3) {
     		w.notification.setStatus(false);
     		mail = new Letter(2, false, false);
     		w.addObject(mail, 0, 0);
     		step++;
-    	} else if (w.score > 1500 && step == 4) {
+    	} else if (w.score > 1400 && step == 4) {
     		mail.dismiss();
     		step++;
-    	} else if (w.score > 1550 && step == 5) {
+    	} else if (w.score > 1500 && step == 5) {
     		w.notification.setStatus(true);
     		mail = new Letter(3, true, true);
     		step++;
-    	} else if (w.score > 1550 && w.score < 1750 && step == 6 && Greenfoot.isKeyDown("m")) {
+    	} else if (w.score > 1500 && w.score < 1750 && step == 6 && Greenfoot.isKeyDown("m")) {
     		w.addObject(mail, 0, 0);
     	} else if (w.score > 1750 && step == 6) {
     		w.notification.setStatus(true);
