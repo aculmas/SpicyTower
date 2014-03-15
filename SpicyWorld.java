@@ -42,7 +42,6 @@ public class SpicyWorld extends World
         int currentSpacing = firstSpacing;
         int place = 600;
         Actor bo = new Boy();
-        aList.add(bo);
         addObject(bo, 10, 550);
         while (place - (currentSpacing) >= 0) {
             Row r;
@@ -87,6 +86,7 @@ public class SpicyWorld extends World
     }
     public void loose(Actor a) {
         int h = (int)getHeight() / 2;
+        pause = true;
         if (score > 2000) {
             addObject(new GoodThing(), 50, h);
             addObject(new GoodThing(), 200, h);
@@ -131,7 +131,9 @@ public class SpicyWorld extends World
 
                 List<Actor> removedList = new ArrayList<Actor>();
                 for ( Actor a : aList ) {
+                    try {
                     a.setLocation(a.getX(), a.getY()+velocity);
+                    } catch (Exception e) {}
                     if (a.getY() == 599) {
                         removeObject(a);
                         removedList.add(a);

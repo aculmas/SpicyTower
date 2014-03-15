@@ -75,7 +75,7 @@ public class Boy extends Actor
                     fall++;
                     y = y-(70/(1*fall*gravity));
                     this.setLocation(getX(), (int)y);
-                    if (y >= getWorld().getHeight()) {
+                    if (y >= (getWorld().getHeight() - 1)) {
                         try {
                             world.loose(this);
                         } catch (Exception e) {}
